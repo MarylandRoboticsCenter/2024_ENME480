@@ -1,0 +1,45 @@
+version: "3.9"
+services:
+  ros2_docker:
+    build:
+      context: ..
+      dockerfile: docker/humble_ur3e.Dockerfile
+      target: ur3e_mrc_ws
+      args:
+        - WS_DIR=${WS_DIR}
+        - USERNAME=${USERNAME}
+        - userid=${userid}
+        - groupid=${groupid}
+        - ROS_DOMAIN_ID=${ROS_DOMAIN_ID}
+        - YOUR_IP=${YOUR_IP}
+        - UR3E_IP=${UR3E_IP}
+    container_name: enme480_ur3e_container
+    environment:
+      #- RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+      #- CYCLONEDDS_URI=${AMENT_WORKSPACE_DIR}/dds/cyclone.xml
+      - DISPLAY=$DISPLAY
+      - QT_X11_NO_MITSHM=1
+      # GPU access
+      - NVIDIA_DRIVER_CAPABILITIES=all
+      - NVIDIA_DRIVER_CAPABILITIES=graphics,utility,compute
+    image: enme480_ur3e_image:latest
+    # Required for communicating over the network
+    network_mode: "host"
+    ipc: "host"
+    pid: "host"
+    # Required for accessing hardware
+    privileged: true
+    tty: true
+    stdin_open: true
+    # rt kernel access    
+    cap_add:
+      - SYS_NICE
+    ulimits:
+      rtprio: 99
+      rttime: -1    
+    volumes:
+      - ../src:/home/${USERNAME}/${WS_DIR}/src
+      - ../config:/home/${USERNAME}/${WS_DIR}/config
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+
+

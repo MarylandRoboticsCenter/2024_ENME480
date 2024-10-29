@@ -1,0 +1,13 @@
+1) to start Docker ROS2 container:
+docker compose run --rm ros2_docker bash
+
+2) Start terminal multiplexer and create 4 panes:
+  tmux
+  Ctrl+A b
+  Ctrl+A v
+
+2)Launch the ur3e driver in one of the terminals:
+ros2 launch ur_robot_driver ur_control.launch.py ur_type:=ur3e robot_ip:=192.168.77.22 kinematics_params_file:=/home/ras_enme480/ENME480_ws/config/ur3e_mrc.yaml
+
+3)Launch the control_by MRC_ur3e_pc on the teaching pendant
+Programs-->URCaps-->External Control-->Control_by_MRC_ur3e_pc

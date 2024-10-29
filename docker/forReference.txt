@@ -1,0 +1,8 @@
+# to build the image
+userid=$(id -u) groupid=$(id -g) docker compose -f enme480-compose.yml build
+
+# to start the container
+docker compose -f enme480-compose.yml run --rm ros2_docker bash
+
+# to start the container if COMPOSE_FILE env variable is properly defined
+docker compose run --rm ros2_docker bash

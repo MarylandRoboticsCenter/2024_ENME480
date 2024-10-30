@@ -7,7 +7,7 @@ services:
       target: ur3e_mrc_ws
       args:
         - WS_DIR=${WS_DIR}
-        - USERNAME=${USERNAME}
+        - USERNAME=${USERNAME_DOCKER}
         - userid=${userid}
         - groupid=${groupid}
         - ROS_DOMAIN_ID=${ROS_DOMAIN_ID}
@@ -38,8 +38,8 @@ services:
       rtprio: 99
       rttime: -1    
     volumes:
-      - ../src:/home/${USERNAME}/${WS_DIR}/src
-      - ../config:/home/${USERNAME}/${WS_DIR}/config
+      - ../src:/home/${USERNAME_DOCKER}/${WS_DIR}/src
+      - ../config:/home/${USERNAME_DOCKER}/${WS_DIR}/config
       - /tmp/.X11-unix:/tmp/.X11-unix:rw
 
 

@@ -11,3 +11,18 @@ ros2 launch ur_robot_driver ur_control.launch.py ur_type:=ur3e robot_ip:=192.168
 
 3)Launch the control_by MRC_ur3e_pc on the teaching pendant
 Programs-->URCaps-->External Control-->Control_by_MRC_ur3e_pc
+
+4) build the workspace
+cd ENME480_ws
+colcon build --symlink-install
+
+5) source the workspace
+source install/setup.bash
+
+6) Launch ur3e package in diiferent terminals (THIS COMMAND IS ALSO MENTIONED ON GITHUB LAB README. DON'T LAUNCH IT TWICE)
+ros2 launch ur3e_mrc ur3e_enme480.launch
+
+!!for forward kinematics lab!!
+
+7) Launch FK script (THIS COMMAND IS ALSO MENTIONED ON GITHUB LAB README. DON'T LAUNCH IT TWICE)
+ros2 run enme480_lab_fk ur3e_fk <joint1> <joint2> <joint3> <joint4> <joint5> <joint6> 

@@ -21,7 +21,8 @@ services:
       - QT_X11_NO_MITSHM=1
       # GPU access
       - NVIDIA_DRIVER_CAPABILITIES=all
-      - NVIDIA_DRIVER_CAPABILITIES=graphics,utility,compute
+      - NVIDIA_VISIBLE_DEVICES=all
+    # runtime: nvidia
     image: enme480_ur3e_image:latest
     # Required for communicating over the network
     network_mode: "host"
